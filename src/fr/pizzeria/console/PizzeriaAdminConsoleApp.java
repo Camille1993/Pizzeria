@@ -3,13 +3,13 @@ package fr.pizzeria.console;
 import java.util.Scanner;
 
 import fr.pizzeria.model.Pizza.Pizza;
-import fr.pizzeria.AjouterPizzasService;
-import fr.pizzeria.ListerPizzasService;
-import fr.pizzeria.MenuService;
-import fr.pizzeria.ModifierPizzasService;
-import fr.pizzeria.SupprimerPizzasService;
 import fr.pizzeria.dao.IPizzaDao;
 import fr.pizzeria.dao.PizzaMemDao;
+import fr.pizzeria.menuservice.AjouterPizzasService;
+import fr.pizzeria.menuservice.ListerPizzasService;
+import fr.pizzeria.menuservice.MenuService;
+import fr.pizzeria.menuservice.ModifierPizzasService;
+import fr.pizzeria.menuservice.SupprimerPizzasService;
 
 public class PizzeriaAdminConsoleApp {
 

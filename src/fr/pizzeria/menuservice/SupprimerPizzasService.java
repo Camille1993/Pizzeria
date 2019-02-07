@@ -1,4 +1,4 @@
-package fr.pizzeria;
+package fr.pizzeria.menuservice;
 
 import java.util.Scanner;
 
