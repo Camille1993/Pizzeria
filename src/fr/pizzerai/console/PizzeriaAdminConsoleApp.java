@@ -107,21 +107,23 @@ public class PizzeriaAdminConsoleApp {
 				
 			} else if (choice == 4) {
 				//supprimer une pizza
-				/* 				
-				System.out.println("Suppression d'une pizza");
-				System.out.println("Veuillez saisir le code de la pizza à supprimer : ");
-				
+
+				System.out.println("suppression d'une pizza");
+				System.out.println("Veuillez saisir le code de la pizza à supprimer");
+
 				String codeSuppr = choiceMenu.nextLine();
-				
+
 				Pizza[] newTableauPizza = new Pizza[tableauPizza.length-1];
-					int iTemp =0;
-					for (int i =0; i< tableauPizza.length; i++);
-						if (!tableauPizza[i].code.equals(codeSuppr)) {
-							newTableauPizza[iTemp] = tableauPizza[i];
-							iTemp ++;
-						}
-						tableauPizza = newTableauPizza;
-			*/	
+
+				int iTemp = 0;
+
+				for (int i = 0; i< tableauPizza.length; i++) {
+					if (!codeSuppr.equals(tableauPizza[i].code)) {
+						newTableauPizza[iTemp] = tableauPizza[i];
+						iTemp++;
+					}
+				}
+				tableauPizza = newTableauPizza ;
 				
 			}
 			else {
