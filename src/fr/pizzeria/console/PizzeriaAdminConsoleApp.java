@@ -1,4 +1,4 @@
-package fr.pizzerai.console;
+package fr.pizzeria.console;
 
 import java.util.Scanner;
 
