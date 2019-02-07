@@ -3,6 +3,11 @@ package fr.pizzeria.console;
 import java.util.Scanner;
 
 import fr.pizzeria.model.Pizza.Pizza;
+import fr.pizzeria.AjouterPizzasService;
+import fr.pizzeria.ListerPizzasService;
+import fr.pizzeria.MenuService;
+import fr.pizzeria.ModifierPizzasService;
+import fr.pizzeria.SupprimerPizzasService;
 import fr.pizzeria.dao.IPizzaDao;
 import fr.pizzeria.dao.PizzaMemDao;
 
@@ -23,12 +28,9 @@ public class PizzeriaAdminConsoleApp {
 		pizzaDao.saveNewPizza(new Pizza (6, "ORI", "L'orientale", 13.50));
 		pizzaDao.saveNewPizza(new Pizza (7, "IND", "L'indienne", 14.00));
 		//Méthode pour créer tableau pizza
-		
+
 
 		int choice =0;
-		String code;
-		String nom;
-		double prix;
 
 		//afficher le menu		
 		while (true) {
@@ -45,68 +47,26 @@ public class PizzeriaAdminConsoleApp {
 			//options
 
 			if (choice == 1) {
-				System.out.println("Liste des pizzas");
-
-				//méthode pour afficher pizza
-
-				Pizza[] tableauPizza = pizzaDao.findAllPizzas();
-
-				for (int i =0; i<tableauPizza.length; i++) {
-					System.out.println(tableauPizza[i]);
-				}
+				//Lister pizza
+				MenuService service = new ListerPizzasService();
+				service.executeUC(pizzaDao, choiceMenu);
 
 			}else if (choice == 2) {
 
 				//declarer une nouvelle pizza				
-				System.out.println("Ajouter une nouvelle pizza");
+				MenuService service = new AjouterPizzasService();
+				service.executeUC(pizzaDao, choiceMenu);
 
-				System.out.println("Veuillez saisir le code : ");
-				code = choiceMenu.nextLine();
-
-				System.out.println("Veuillez saisir le nom (sans espace) : ");
-				nom = choiceMenu.nextLine();
-
-				System.out.println("Veuillez saisir le prix : ");
-				prix = choiceMenu.nextDouble();
-
-				//méthode pour ajouter nouvelle pizza
-
-				Pizza newPizza =new Pizza(code, nom, prix);	
-				pizzaDao.saveNewPizza(newPizza);
-
-			}else if (choice == 3) {											
-				System.out.println("Mise à jour d'une pizza");
-
-				//méthode pour modifier une pizza
-
-				System.out.println("Veuillez saisir le code de la pizza à modifier : ");
-				String codeModif = choiceMenu.nextLine();
-				pizzaDao.findPizzaByCode(codeModif);
-
-				System.out.println("Veuillez écrire le nouveau code : ");
-				code = choiceMenu.nextLine();
-
-				System.out.println("Veuillez écrire le nouveau nom : ");
-				nom = choiceMenu.nextLine();
-
-				System.out.println("Veuillez écrire le nouveau prix : ");
-				prix = choiceMenu.nextDouble();
-
-				Pizza newPizza = new Pizza(code, nom, prix);
-				pizzaDao.updatePizza(code, newPizza);
-
+			}else if (choice == 3) {
+				//Modifier ue pizza
+				MenuService service = new ModifierPizzasService();
+				service.executeUC(pizzaDao, choiceMenu);
 
 			} else if (choice == 4) {
 				//supprimer une pizza
-
-				System.out.println("suppression d'une pizza");
-				System.out.println("Veuillez saisir le code de la pizza à supprimer");
-
-				String codeSuppr = choiceMenu.nextLine();
-
-				pizzaDao.deletePizza(codeSuppr);
-
-
+				MenuService service = new SupprimerPizzasService();
+				service.executeUC(pizzaDao, choiceMenu);
+				
 			}
 			else {
 				//quitter l'application						

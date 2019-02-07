@@ -59,7 +59,6 @@ public class PizzaMemDao implements IPizzaDao {
 	@Override
 	public Pizza findPizzaByCode(String codePizza) {
 		/*
-		String codeFindPizza = choiceMenu.nextLine();
 		
 		Pizza[] newTableauPizza = new Pizza[tableauPizza.length];
 		int iTemp = 0;
