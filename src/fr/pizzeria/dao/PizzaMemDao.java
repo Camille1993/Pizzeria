@@ -1,65 +1,56 @@
 package fr.pizzeria.dao;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
 import fr.pizzeria.model.Pizza.Pizza;
 
 public class PizzaMemDao implements IPizzaDao {
 
-	private Pizza[] tableauPizza = new Pizza[0];
-	
+	private List<Pizza> listePizza = new ArrayList<Pizza>();
+
 	@Override
-	public Pizza[] findAllPizzas() {
-		return tableauPizza;
+	public List findAllPizzas() {
+		return listePizza;
 	}
-	
+
 	@Override
 	public void saveNewPizza(Pizza pizza) {
-		// Creer un tableau plus grand de 1		
-		int newLength = tableauPizza.length + 1;
-		Pizza[] newTableauPizza = new Pizza[newLength];
-		
-		// Copier les anciennes valeurs
-		for(int i = 0; i< tableauPizza.length; i++){
-			newTableauPizza[i] = tableauPizza[i];	
-		}
 		//Ajouter la nouvelle pizza
-		newTableauPizza[tableauPizza.length] = pizza;
-		
-		//remplacer la liste precedente
-		tableauPizza = newTableauPizza;
-		
+		listePizza.add(pizza);	
 	}
+
 	@Override
 	public void updatePizza(String codePizza, Pizza pizza) {
-		
-		for (int i =0; i<tableauPizza.length; i++) {
-			
-			if (codePizza.equals(tableauPizza[i].code)) {
-				
-				tableauPizza[i] = pizza;
+
+		for (Pizza p : listePizza) {
+
+			if (p.code.equals(codePizza)) {
+				p.code = pizza.code;
+				p.libelle = pizza.libelle;
+				p.prix= pizza.prix;
 			}
 		}
 	}
-	
+
 	@Override
 	public void deletePizza(String codePizza) {
-		
-		Pizza[] newTableauPizza = new Pizza[tableauPizza.length-1];
-		int iTemp = 0;
-
-		for (int i = 0; i< tableauPizza.length; i++) {
-			if (!codePizza.equals(tableauPizza[i].code)) {
-				newTableauPizza[iTemp] = tableauPizza[i];
-				iTemp++;
+		Iterator iterator = listePizza.iterator();
+		while(iterator.hasNext()) {
+			Pizza p = (Pizza) iterator.next();
+			if (p.code.equals(codePizza)) {
+				iterator.remove();	
 			}
-		}
-		
-		tableauPizza = newTableauPizza ;
 
+		}
 	}
+
+
 	@Override
 	public Pizza findPizzaByCode(String codePizza) {
 		/*
-		
+
 		Pizza[] newTableauPizza = new Pizza[tableauPizza.length];
 		int iTemp = 0;
 		for (int i =0; i<tableauPizza.length; i++) {
@@ -70,7 +61,7 @@ public class PizzaMemDao implements IPizzaDao {
 			}
 		}
 		tableauPizza =newTableauPizza;
-		*/
+		 */
 		return null;
 	}
 	@Override
@@ -79,6 +70,6 @@ public class PizzaMemDao implements IPizzaDao {
 		return false;
 	}
 
-	
-	
+
+
 }

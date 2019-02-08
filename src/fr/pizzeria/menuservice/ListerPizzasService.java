@@ -1,5 +1,6 @@
 package fr.pizzeria.menuservice;
 
+import java.util.List;
 import java.util.Scanner;
 
 import fr.pizzeria.dao.IPizzaDao;
@@ -13,15 +14,14 @@ public class ListerPizzasService extends MenuService {
 
 		//méthode pour afficher pizza
 
-		Pizza[] tableauPizza = pizzaDao.findAllPizzas();
-
-		for (int i =0; i<tableauPizza.length; i++) {
-			System.out.println(tableauPizza[i]);
-		}
-
+		List<Pizza> listePizza = pizzaDao.findAllPizzas();
+		
+		System.out.println(listePizza);
 	}
 
 }
-	
+
+
+
 
 

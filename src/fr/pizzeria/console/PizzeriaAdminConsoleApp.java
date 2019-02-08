@@ -16,19 +16,18 @@ public class PizzeriaAdminConsoleApp {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		Scanner choiceMenu = new Scanner(System.in);
-
+		
 		//tableau pizza	
 		IPizzaDao pizzaDao = new PizzaMemDao();
-		pizzaDao.saveNewPizza(new Pizza (0, "PEP", "Pépéroni", 12.50));
-		pizzaDao.saveNewPizza(new Pizza (1, "MAR", "Margherita", 14.00));
-		pizzaDao.saveNewPizza(new Pizza (2, "REIN", "La reine", 11.50));
-		pizzaDao.saveNewPizza(new Pizza (3, "FRO", "La 4 fromages", 12.00));
-		pizzaDao.saveNewPizza(new Pizza (4, "CAR", "La carnivore", 12.50));
-		pizzaDao.saveNewPizza(new Pizza (5, "SAV", "La savoyarde", 13.00));
-		pizzaDao.saveNewPizza(new Pizza (6, "ORI", "L'orientale", 13.50));
-		pizzaDao.saveNewPizza(new Pizza (7, "IND", "L'indienne", 14.00));
-		//Méthode pour créer tableau pizza
-
+		
+		pizzaDao.saveNewPizza(new Pizza ("PEP", "Pépéroni", 12.50));
+		pizzaDao.saveNewPizza(new Pizza ("MAR", "Margherita", 14.00));
+		pizzaDao.saveNewPizza(new Pizza ("REIN", "La reine", 11.50));
+		pizzaDao.saveNewPizza(new Pizza ("FRO", "La 4 fromages", 12.00));
+		pizzaDao.saveNewPizza(new Pizza ("CAR", "La carnivore", 12.50));
+		pizzaDao.saveNewPizza(new Pizza ("SAV", "La savoyarde", 13.00));
+		pizzaDao.saveNewPizza(new Pizza ("ORI", "L'orientale", 13.50));
+		pizzaDao.saveNewPizza(new Pizza ("IND", "L'indienne", 14.00));
 
 		int choice =0;
 
@@ -44,10 +43,13 @@ public class PizzeriaAdminConsoleApp {
 			choice = choiceMenu.nextInt();
 			choiceMenu.nextLine();
 
+							
+		
 			//options
-
+		
 			if (choice == 1) {
 				//Lister pizza
+
 				MenuService service = new ListerPizzasService();
 				service.executeUC(pizzaDao, choiceMenu);
 
@@ -66,7 +68,7 @@ public class PizzeriaAdminConsoleApp {
 				//supprimer une pizza
 				MenuService service = new SupprimerPizzasService();
 				service.executeUC(pizzaDao, choiceMenu);
-				
+
 			}
 			else {
 				//quitter l'application						
