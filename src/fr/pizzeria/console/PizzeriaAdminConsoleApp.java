@@ -5,6 +5,8 @@ import java.util.Scanner;
 import fr.pizzeria.model.Pizza.Pizza;
 import fr.pizzeria.dao.IPizzaDao;
 import fr.pizzeria.dao.PizzaMemDao;
+import fr.pizzeria.exception.SavePizzaException;
+import fr.pizzeria.exception.StockageException;
 import fr.pizzeria.menuservice.MenuService;
 import fr.pizzeria.menuservice.MenuServiceFactory;
 
@@ -12,20 +14,24 @@ import fr.pizzeria.menuservice.MenuServiceFactory;
 public class PizzeriaAdminConsoleApp {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		Scanner choiceMenu = new Scanner(System.in);
 
-		//tableau pizza	
+		//Liste des pizza	
 		IPizzaDao pizzaDao = new PizzaMemDao();
+		
+		try {
+			pizzaDao.saveNewPizza(new Pizza ("PEP", "Pépéroni", 12.50));
+			pizzaDao.saveNewPizza(new Pizza ("MAR", "Margherita", 14.00));
+			pizzaDao.saveNewPizza(new Pizza ("REIN", "La reine", 11.50));
+			pizzaDao.saveNewPizza(new Pizza ("FRO", "La 4 fromages", 12.00));
+			pizzaDao.saveNewPizza(new Pizza ("CAR", "La carnivore", 12.50));
+			pizzaDao.saveNewPizza(new Pizza ("SAV", "La savoyarde", 13.00));
+			pizzaDao.saveNewPizza(new Pizza ("ORI", "L'orientale", 13.50));
+			pizzaDao.saveNewPizza(new Pizza ("IND", "L'indienne", 14.00));
 
-		pizzaDao.saveNewPizza(new Pizza ("PEP", "Pépéroni", 12.50));
-		pizzaDao.saveNewPizza(new Pizza ("MAR", "Margherita", 14.00));
-		pizzaDao.saveNewPizza(new Pizza ("REIN", "La reine", 11.50));
-		pizzaDao.saveNewPizza(new Pizza ("FRO", "La 4 fromages", 12.00));
-		pizzaDao.saveNewPizza(new Pizza ("CAR", "La carnivore", 12.50));
-		pizzaDao.saveNewPizza(new Pizza ("SAV", "La savoyarde", 13.00));
-		pizzaDao.saveNewPizza(new Pizza ("ORI", "L'orientale", 13.50));
-		pizzaDao.saveNewPizza(new Pizza ("IND", "L'indienne", 14.00));
+		} catch (SavePizzaException spe) {
+			spe.printStackTrace();
+		}
 
 		int choice =0;
 
@@ -42,12 +48,15 @@ public class PizzeriaAdminConsoleApp {
 			choiceMenu.nextLine();
 
 
-			//options
-
 			if (choice > 0 && choice < 5) {
-				//Lister pizza
+				//choisir option et executer le programme selon l'option choisi
 				MenuService service = MenuServiceFactory.getService(choice);
-				service.executeUC(pizzaDao, choiceMenu);
+				try {
+					service.executeUC(pizzaDao, choiceMenu);
+				} catch (StockageException se) {
+					System.out.println(se.getMessage());
+					se.printStackTrace();
+				}
 
 			}
 			else {

@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import fr.pizzeria.exception.DeletePizzaException;
+import fr.pizzeria.exception.SavePizzaException;
+import fr.pizzeria.exception.UpdatePizzaException;
 import fr.pizzeria.model.Pizza.Pizza;
 
 public class PizzaMemDao implements IPizzaDao {
@@ -16,13 +19,19 @@ public class PizzaMemDao implements IPizzaDao {
 	}
 
 	@Override
-	public void saveNewPizza(Pizza pizza) {
+	public void saveNewPizza(Pizza pizza) throws SavePizzaException {
+
+		//Tester avec si la pizza existe
+		if (pizzaExists(pizza.code)){
+			throw new SavePizzaException("");
+		}
 		//Ajouter la nouvelle pizza
-		listePizza.add(pizza);	
+		listePizza.add(pizza);
+
 	}
 
 	@Override
-	public void updatePizza(String codePizza, Pizza pizza) {
+	public void updatePizza(String codePizza, Pizza pizza) throws UpdatePizzaException {
 
 		for (Pizza p : listePizza) {
 
@@ -30,43 +39,49 @@ public class PizzaMemDao implements IPizzaDao {
 				p.code = pizza.code;
 				p.libelle = pizza.libelle;
 				p.prix= pizza.prix;
+				return;
 			}
 		}
+		throw new UpdatePizzaException("");
 	}
 
 	@Override
-	public void deletePizza(String codePizza) {
+	public void deletePizza(String codePizza) throws DeletePizzaException {
 		Iterator iterator = listePizza.iterator();
 		while(iterator.hasNext()) {
 			Pizza p = (Pizza) iterator.next();
 			if (p.code.equals(codePizza)) {
 				iterator.remove();	
+				return;
 			}
 
 		}
+		throw new DeletePizzaException("");
 	}
 
 
 	@Override
 	public Pizza findPizzaByCode(String codePizza) {
-		/*
+		
+		for (Pizza p : listePizza) {
 
-		Pizza[] newTableauPizza = new Pizza[tableauPizza.length];
-		int iTemp = 0;
-		for (int i =0; i<tableauPizza.length; i++) {
-			if(codeFindPizza.equals(tableauPizza[i].code)) {
-				newTableauPizza[iTemp] = tableauPizza[i];
-				iTemp++;
-				System.out.println(tableauPizza[i]);
+			if (p.code.equals(codePizza)) {
+				System.out.println(p);
 			}
 		}
-		tableauPizza =newTableauPizza;
-		 */
 		return null;
 	}
+
+
 	@Override
 	public boolean pizzaExists(String codePizza) {
-		// TODO Auto-generated method stub
+		for (Pizza p : listePizza) {
+
+			if (p.code.equals(codePizza)) {
+				return true;
+			}
+		}
+
 		return false;
 	}
 
