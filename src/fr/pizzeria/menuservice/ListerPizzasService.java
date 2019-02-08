@@ -6,7 +6,7 @@ import java.util.Scanner;
 import fr.pizzeria.dao.IPizzaDao;
 import fr.pizzeria.model.Pizza.Pizza;
 
-public class ListerPizzasService extends MenuService {
+class ListerPizzasService extends MenuService {
 
 	@Override
 	public void executeUC(IPizzaDao pizzaDao, Scanner scanner) {

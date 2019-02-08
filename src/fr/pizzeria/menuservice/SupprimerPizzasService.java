@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 import fr.pizzeria.dao.IPizzaDao;
 
-public class SupprimerPizzasService extends MenuService {
+ class SupprimerPizzasService extends MenuService {
 
 	@Override
 	public void executeUC(IPizzaDao pizzaDao, Scanner scanner) {

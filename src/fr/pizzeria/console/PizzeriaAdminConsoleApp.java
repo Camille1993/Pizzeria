@@ -5,11 +5,9 @@ import java.util.Scanner;
 import fr.pizzeria.model.Pizza.Pizza;
 import fr.pizzeria.dao.IPizzaDao;
 import fr.pizzeria.dao.PizzaMemDao;
-import fr.pizzeria.menuservice.AjouterPizzasService;
-import fr.pizzeria.menuservice.ListerPizzasService;
 import fr.pizzeria.menuservice.MenuService;
-import fr.pizzeria.menuservice.ModifierPizzasService;
-import fr.pizzeria.menuservice.SupprimerPizzasService;
+import fr.pizzeria.menuservice.MenuServiceFactory;
+
 
 public class PizzeriaAdminConsoleApp {
 
@@ -46,32 +44,15 @@ public class PizzeriaAdminConsoleApp {
 
 			//options
 
-			if (choice == 1) {
+			if (choice > 0 && choice < 5) {
 				//Lister pizza
-
-				MenuService service = new ListerPizzasService();
-				service.executeUC(pizzaDao, choiceMenu);
-
-			}else if (choice == 2) {
-
-				//declarer une nouvelle pizza				
-				MenuService service = new AjouterPizzasService();
-				service.executeUC(pizzaDao, choiceMenu);
-
-			}else if (choice == 3) {
-				//Modifier ue pizza
-				MenuService service = new ModifierPizzasService();
-				service.executeUC(pizzaDao, choiceMenu);
-
-			} else if (choice == 4) {
-				//supprimer une pizza
-				MenuService service = new SupprimerPizzasService();
+				MenuService service = MenuServiceFactory.getService(choice);
 				service.executeUC(pizzaDao, choiceMenu);
 
 			}
 			else {
 				//quitter l'application						
-				System.out.println("Au revoir :(");
+				System.out.println("Au revoir et à bientôt");
 				break;
 			}
 
