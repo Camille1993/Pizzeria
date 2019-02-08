@@ -15,7 +15,7 @@ public class ListerPizzasService extends MenuService {
 		//méthode pour afficher pizza
 
 		List<Pizza> listePizza = pizzaDao.findAllPizzas();
-		
+
 		System.out.println(listePizza);
 	}
 

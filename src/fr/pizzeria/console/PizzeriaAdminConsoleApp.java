@@ -16,10 +16,10 @@ public class PizzeriaAdminConsoleApp {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		Scanner choiceMenu = new Scanner(System.in);
-		
+
 		//tableau pizza	
 		IPizzaDao pizzaDao = new PizzaMemDao();
-		
+
 		pizzaDao.saveNewPizza(new Pizza ("PEP", "Pépéroni", 12.50));
 		pizzaDao.saveNewPizza(new Pizza ("MAR", "Margherita", 14.00));
 		pizzaDao.saveNewPizza(new Pizza ("REIN", "La reine", 11.50));
@@ -43,10 +43,9 @@ public class PizzeriaAdminConsoleApp {
 			choice = choiceMenu.nextInt();
 			choiceMenu.nextLine();
 
-							
-		
+
 			//options
-		
+
 			if (choice == 1) {
 				//Lister pizza
 
