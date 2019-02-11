@@ -2,13 +2,13 @@ package fr.pizzeria.console;
 
 import java.util.Scanner;
 
-import fr.pizzeria.model.Pizza.Pizza;
 import fr.pizzeria.dao.IPizzaDao;
 import fr.pizzeria.dao.PizzaMemDao;
 import fr.pizzeria.exception.SavePizzaException;
 import fr.pizzeria.exception.StockageException;
 import fr.pizzeria.menuservice.MenuService;
 import fr.pizzeria.menuservice.MenuServiceFactory;
+import fr.pizzeria.model.Pizza;
 
 
 public class PizzeriaAdminConsoleApp {
@@ -20,14 +20,14 @@ public class PizzeriaAdminConsoleApp {
 		IPizzaDao pizzaDao = new PizzaMemDao();
 		
 		try {
-			pizzaDao.saveNewPizza(new Pizza ("PEP", "Pépéroni", 12.50));
-			pizzaDao.saveNewPizza(new Pizza ("MAR", "Margherita", 14.00));
-			pizzaDao.saveNewPizza(new Pizza ("REIN", "La reine", 11.50));
-			pizzaDao.saveNewPizza(new Pizza ("FRO", "La 4 fromages", 12.00));
-			pizzaDao.saveNewPizza(new Pizza ("CAR", "La carnivore", 12.50));
-			pizzaDao.saveNewPizza(new Pizza ("SAV", "La savoyarde", 13.00));
-			pizzaDao.saveNewPizza(new Pizza ("ORI", "L'orientale", 13.50));
-			pizzaDao.saveNewPizza(new Pizza ("IND", "L'indienne", 14.00));
+			pizzaDao.saveNewPizza(new Pizza ("PEP", "Pépéroni", 12.50, "Viande"));
+			pizzaDao.saveNewPizza(new Pizza ("MAR", "Margherita", 14.00, "Végétarienne"));
+			pizzaDao.saveNewPizza(new Pizza ("REIN", "La reine", 11.50, "Viande"));
+			pizzaDao.saveNewPizza(new Pizza ("FRO", "La 4 fromages", 12.00, "Végétarienne"));
+			pizzaDao.saveNewPizza(new Pizza ("CAR", "La carnivore", 12.50, "Viande"));
+			pizzaDao.saveNewPizza(new Pizza ("SAV", "La savoyarde", 13.00, "Viande"));
+			pizzaDao.saveNewPizza(new Pizza ("ORI", "L'orientale", 13.50, "Viande"));
+			pizzaDao.saveNewPizza(new Pizza ("IND", "L'indienne", 14.00, "Viande"));
 
 		} catch (SavePizzaException spe) {
 			spe.printStackTrace();
@@ -51,6 +51,7 @@ public class PizzeriaAdminConsoleApp {
 			if (choice > 0 && choice < 5) {
 				//choisir option et executer le programme selon l'option choisi
 				MenuService service = MenuServiceFactory.getService(choice);
+				
 				try {
 					service.executeUC(pizzaDao, choiceMenu);
 				} catch (StockageException se) {

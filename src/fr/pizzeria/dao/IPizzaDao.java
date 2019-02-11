@@ -5,7 +5,7 @@ import java.util.List;
 import fr.pizzeria.exception.DeletePizzaException;
 import fr.pizzeria.exception.SavePizzaException;
 import fr.pizzeria.exception.UpdatePizzaException;
-import fr.pizzeria.model.Pizza.Pizza;
+import fr.pizzeria.model.Pizza;
 
 public interface IPizzaDao {
 

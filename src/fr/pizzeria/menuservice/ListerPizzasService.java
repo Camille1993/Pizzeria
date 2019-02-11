@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Scanner;
 
 import fr.pizzeria.dao.IPizzaDao;
-import fr.pizzeria.model.Pizza.Pizza;
+import fr.pizzeria.model.Pizza;
 
 class ListerPizzasService extends MenuService {
 
