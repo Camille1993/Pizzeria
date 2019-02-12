@@ -1,11 +1,15 @@
 package fr.pizzeria.model;
 
+
+//énumération des catégories de pizzas
 public enum CategoriePizza {
 	VIANDE("Viande"),
 	POISSON ("Poisson"),
-	VEGETARIENNE("Végétarienne"); 
+	VEGETARIENNE("Végétarienne"),; 
+
 
 	private String categorie;
+	
 
 	private CategoriePizza(String categorie) {
 		this.categorie = categorie;

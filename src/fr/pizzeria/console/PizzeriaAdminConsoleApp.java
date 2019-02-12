@@ -18,16 +18,17 @@ public class PizzeriaAdminConsoleApp {
 
 		//Liste des pizza	
 		IPizzaDao pizzaDao = new PizzaMemDao();
-		
+
 		try {
 			pizzaDao.saveNewPizza(new Pizza ("PEP", "Pépéroni", 12.50, "Viande"));
 			pizzaDao.saveNewPizza(new Pizza ("MAR", "Margherita", 14.00, "Végétarienne"));
 			pizzaDao.saveNewPizza(new Pizza ("REIN", "La reine", 11.50, "Viande"));
-			pizzaDao.saveNewPizza(new Pizza ("FRO", "La 4 fromages", 12.00, "Végétarienne"));
-			pizzaDao.saveNewPizza(new Pizza ("CAR", "La carnivore", 12.50, "Viande"));
-			pizzaDao.saveNewPizza(new Pizza ("SAV", "La savoyarde", 13.00, "Viande"));
-			pizzaDao.saveNewPizza(new Pizza ("ORI", "L'orientale", 13.50, "Viande"));
-			pizzaDao.saveNewPizza(new Pizza ("IND", "L'indienne", 14.00, "Viande"));
+			pizzaDao.saveNewPizza(new Pizza ("FRO", "4 fromages", 12.00, "Végétarienne"));
+			pizzaDao.saveNewPizza(new Pizza ("CAR", "Carnivore", 12.50, "Viande"));
+			pizzaDao.saveNewPizza(new Pizza ("SAV", "Savoyarde", 13.00, "Viande"));
+			pizzaDao.saveNewPizza(new Pizza ("ORI", "Orientale", 13.50, "Viande"));
+			pizzaDao.saveNewPizza(new Pizza ("IND", "Indienne", 14.00, "Viande"));
+			pizzaDao.saveNewPizza(new Pizza ("SAU", "Saumon", 13.50, "Poisson"));
 
 		} catch (SavePizzaException spe) {
 			spe.printStackTrace();
@@ -37,7 +38,7 @@ public class PizzeriaAdminConsoleApp {
 
 		//afficher le menu		
 		while (true) {
-			System.out.println("*******Bienvenue sur le service administration******");
+			System.out.println("\n" + "*******Bienvenue sur le service administration******" + "\n");
 			System.out.println("1.Lister les pizzas");
 			System.out.println("2.Ajouter une nouvelle pizza");
 			System.out.println("3.Mettre à jour une pizza");
@@ -51,7 +52,7 @@ public class PizzeriaAdminConsoleApp {
 			if (choice > 0 && choice < 5) {
 				//choisir option et executer le programme selon l'option choisi
 				MenuService service = MenuServiceFactory.getService(choice);
-				
+
 				try {
 					service.executeUC(pizzaDao, choiceMenu);
 				} catch (StockageException se) {

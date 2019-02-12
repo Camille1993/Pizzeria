@@ -12,32 +12,39 @@ class AjouterPizzasService extends MenuService {
 	@Override
 	public void executeUC(IPizzaDao pizzaDao, Scanner scanner) throws StockageException{
 		System.out.println("Ajouter une nouvelle pizza");
-		
-		System.out.println("Veuillez saisir la catégorie de la pizza : ");
-		String choixCategorie = scanner.nextLine();
+		//ajout d'un menu pour choisir la catégorie de pizza
+		System.out.println("Veuillez choisir une option entre : "
+				+ "\n 1 Viande,"
+				+ "\n 2 Poisson,"
+				+ "\n3 Végétarienne : ");
+		int choixCategorie = scanner.nextInt();
 
 		System.out.println("Veuillez saisir le code : ");
-		String code = scanner.nextLine();
+		String code = scanner.next();
 
 		System.out.println("Veuillez saisir le nom (sans espace) : ");
-		String nom = scanner.nextLine();
+		String nom = scanner.next();
 
 		System.out.println("Veuillez saisir le prix : ");
 		double prix = scanner.nextDouble();
-
-
-
-		if(choixCategorie == "viande") {
+		
+		String categoriePizza = null;
+		
+		if(choixCategorie == 1) {
 			CategoriePizza categorie = CategoriePizza.VIANDE;
-		}else if (choixCategorie == "Poisson") {
+			categoriePizza = "Viande";
+		}else if (choixCategorie == 2) {
 			CategoriePizza categorie = CategoriePizza.POISSON;
-		}else if (choixCategorie == "Végétarienne"){
+			categoriePizza = "Poisson";
+		}else if (choixCategorie == 3){
 			CategoriePizza categorie = CategoriePizza.VEGETARIENNE;
+			categoriePizza = "Végétarienne";
 		}
+
 
 		//méthode pour ajouter nouvelle pizza
 
-		Pizza newPizza =new Pizza(code, nom, prix, choixCategorie);	
+		Pizza newPizza =new Pizza(code, nom, prix, categoriePizza);	
 		pizzaDao.saveNewPizza(newPizza);
 
 

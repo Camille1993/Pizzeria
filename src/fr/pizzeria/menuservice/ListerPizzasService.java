@@ -2,9 +2,9 @@ package fr.pizzeria.menuservice;
 
 import java.util.List;
 import java.util.Scanner;
-
 import fr.pizzeria.dao.IPizzaDao;
 import fr.pizzeria.model.Pizza;
+
 
 class ListerPizzasService extends MenuService {
 
@@ -15,7 +15,6 @@ class ListerPizzasService extends MenuService {
 		//méthode pour afficher pizza
 
 		List<Pizza> listePizza = pizzaDao.findAllPizzas();
-
 		System.out.println(listePizza);
 	}
 

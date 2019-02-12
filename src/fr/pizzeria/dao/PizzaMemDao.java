@@ -1,20 +1,24 @@
 package fr.pizzeria.dao;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
 import fr.pizzeria.exception.DeletePizzaException;
 import fr.pizzeria.exception.SavePizzaException;
 import fr.pizzeria.exception.UpdatePizzaException;
+import fr.pizzeria.model.CategoriePizza;
 import fr.pizzeria.model.Pizza;
 
 public class PizzaMemDao implements IPizzaDao {
 
 	private List<Pizza> listePizza = new ArrayList<Pizza>();
-
+	
+	
 	@Override
 	public List findAllPizzas() {
+		
 		return listePizza;
 	}
 
@@ -39,6 +43,7 @@ public class PizzaMemDao implements IPizzaDao {
 				p.code = pizza.code;
 				p.libelle = pizza.libelle;
 				p.prix= pizza.prix;
+				p.categorie=pizza.categorie;
 				return;
 			}
 		}
@@ -62,7 +67,7 @@ public class PizzaMemDao implements IPizzaDao {
 
 	@Override
 	public Pizza findPizzaByCode(String codePizza) {
-		
+
 		for (Pizza p : listePizza) {
 
 			if (p.code.equals(codePizza)) {

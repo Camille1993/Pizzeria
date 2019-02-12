@@ -13,37 +13,48 @@ class ModifierPizzasService extends MenuService{
 	public void executeUC(IPizzaDao pizzaDao, Scanner scanner) throws StockageException {
 		System.out.println("Mise à jour d'une pizza");
 
-		//méthode pour modifier une pizza
-		System.out.println("Veuillez écrire la nouvelle catégorie : ");
-		String choixCategorie = scanner.nextLine();
+		//Demande pour les nouvelles données
+		
 		
 		System.out.println("Veuillez saisir le code de la pizza à modifier : ");
-		String codeModif = scanner.nextLine();
+		String codeModif = scanner.next();
+	//ajout d'un menu pour choisir la catégorie de pizza	
+		System.out.println("Veuillez choisir une option entre : "
+				+ "\n 1 Viande,"
+				+ "\n 2 Poisson,"
+				+ "\n3 Végétarienne : ");
+		int choixCategorie = scanner.nextInt();
 
 		System.out.println("Veuillez écrire le nouveau code : ");
-		String code = scanner.nextLine();
+		String code = scanner.next();
 
 		System.out.println("Veuillez écrire le nouveau nom : ");
-		String nom = scanner.nextLine();
+		String nom = scanner.next();
 
 		System.out.println("Veuillez écrire le nouveau prix : ");
 		double prix = scanner.nextDouble();
 
 		
-		
-			if(choixCategorie == "Viande") {
+	String categoriePizza = null;
+	
+			if(choixCategorie == 1) {
 				CategoriePizza categorie = CategoriePizza.VIANDE;
-			}else if (choixCategorie == "Poisson") {
+				categoriePizza = "Viande";
+			}else if (choixCategorie == 2) {
 				CategoriePizza categorie = CategoriePizza.POISSON;
-			}else if (choixCategorie == "Végétarienne"){
+				categoriePizza = "Poisson";
+			}else if (choixCategorie == 3){
 				CategoriePizza categorie = CategoriePizza.VEGETARIENNE;
+				categoriePizza = "Végétarienne";
 			}
-
-		Pizza pizza = new Pizza(code, nom, prix, choixCategorie);
+	
+			
+		Pizza pizza = new Pizza(code, nom, prix, categoriePizza);
 		pizzaDao.updatePizza(codeModif, pizza);
 
 	}
 
+	
 
 
 }

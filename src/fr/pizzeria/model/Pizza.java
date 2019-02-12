@@ -1,6 +1,5 @@
 package fr.pizzeria.model;
 
-
 public class Pizza {
 
 	public int id;
@@ -33,6 +32,6 @@ public class Pizza {
 
 	@Override
 	public String toString() {
-		return "Pizza " + categorie + " : " +code + "-->" + libelle + "("+ prix + "€" + ")" +"\n" ;
+		return "\n"  + categorie + " : " + code + "-->" +  "Pizza " + libelle + "("+ prix + "€" + ")";
 	}
 }
